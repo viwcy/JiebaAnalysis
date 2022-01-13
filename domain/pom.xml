@@ -30,6 +30,10 @@
             <artifactId>jieba-analysis</artifactId>
             <version>1.0.3-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

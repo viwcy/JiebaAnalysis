@@ -7,6 +7,7 @@ import com.qianxinyao.analysis.jieba.keyword.TFIDFAnalyzer;
 import com.viwcy.domain.dto.JiebaReqDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -25,7 +26,7 @@ public class JiebaAnalysisHandle implements InitializingBean {
     /**
      * 提取关键词
      */
-    public Set<String> analysisKeyWord(JiebaReqDTO dto) {
+    public Set<String> analysisKeyWord(@Nullable final JiebaReqDTO dto) {
 
         if (StringUtils.isBlank(dto.getContent())) {
             return new HashSet<>();
@@ -37,7 +38,7 @@ public class JiebaAnalysisHandle implements InitializingBean {
         return list.stream().map(Keyword::getName).collect(Collectors.toSet());
     }
 
-    public List<String> analysis(JiebaReqDTO dto) {
+    public List<String> analysis(@Nullable final JiebaReqDTO dto) {
 
         if (StringUtils.isBlank(dto.getContent())) {
             return new ArrayList<>();
@@ -65,7 +66,7 @@ public class JiebaAnalysisHandle implements InitializingBean {
     /**
      * 判断是否为纯数字
      */
-    private boolean isNum(String word) {
+    private boolean isNum(final String word) {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher matcher = pattern.matcher(word);
         return matcher.matches();

@@ -1,8 +1,11 @@
 package com.viwcy.domain.api;
 
+import com.viwcy.domain.common.BaseController;
+import com.viwcy.domain.common.ResultEntity;
 import com.viwcy.domain.dto.JiebaReqDTO;
 import com.viwcy.domain.service.JiebaAnalysisHandle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +18,14 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("/jieba")
-public class JiebaApi {
+public class JiebaApi extends BaseController {
 
 
     @Autowired
     private JiebaAnalysisHandle jiebaAnalysisHandle;
 
     @PostMapping("/analysis")
-    public Collection<String> analysis(@RequestBody JiebaReqDTO dto) {
-        return jiebaAnalysisHandle.analysis(dto);
+    public ResultEntity<Collection<String>> analysis(@RequestBody @Validated JiebaReqDTO dto) {
+        return success(jiebaAnalysisHandle.analysis(dto));
     }
 }
